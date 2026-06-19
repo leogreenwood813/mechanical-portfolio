@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ profile.name }} | Portfolio</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="hero-page">
+
+    <div class="hero-overlay">
+        <nav class="navbar">
+            <span class="nav-item active">01 : Home</span>
+            <a href="{{ url_for('projects_hub') }}" class="nav-item">02 : Projects</a>
+        </nav>
+
+        <div class="hero-content">
+            <h1>Hello, I'm <span class="highlight">{{ profile.name }}</span>.</h1>
+            <p class="subtitle">Mechanical Engineering Student</p>
+            <p class="bio">{{ profile.bio }}</p>
+            
+            <div class="hero-buttons">
+                <a href="{{ url_for('projects_hub') }}" class="btn btn-primary">View Projects</a>
+                
+                <a href="{{ url_for('static', filename='leo-greenwood-cv.pdf') }}" target="_blank" class="btn" style="border: 2px solid #eab308; color: #eab308; margin-left: 15px;">View CV</a>
+            </div>
+
+            <div class="social-links">
+                <a href="mailto:{{ profile.email }}">📧 Email</a>
+                <span class="link-divider">|</span>
+                <a href="{{ profile.linkedin }}" target="_blank">🔗 LinkedIn</a>
+                <span class="link-divider">|</span>
+                <a href="{{ profile.github }}" target="_blank">🐙 GitHub</a>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

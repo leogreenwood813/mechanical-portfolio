@@ -1,0 +1,302 @@
+/* ==========================================================================
+   1. GLOBAL STYLES & RESET
+   ========================================================================== */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #fafbfc;
+    color: #24292e;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+}
+
+/* ==========================================================================
+   2. HERO LANDING PAGE (HOMEPAGE)
+   ========================================================================== */
+.hero-page {
+    background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+    color: #f8fafc;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 60px 20px;
+    box-sizing: border-box;
+}
+
+.hero-content {
+    text-align: left;
+    max-width: 800px;
+    padding: 40px;
+    z-index: 2;
+}
+
+.hero-content h1 {
+    font-size: 3.5rem;
+    margin-bottom: 10px;
+    font-weight: 700;
+    color: #ffffff;
+}
+
+.highlight {
+    color: #eab308; 
+}
+
+.subtitle {
+    font-size: 1.5rem;
+    color: #94a3b8;
+    margin-bottom: 20px;
+}
+
+.bio {
+    font-size: 1.1rem;
+    color: #cbd5e1;
+    margin-bottom: 35px;
+    max-width: 650px;
+}
+
+.navbar {
+    position: absolute;
+    top: 30px;
+    left: 40px;
+}
+
+.nav-item {
+    color: #64748b;
+    text-decoration: none;
+    margin-right: 20px;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+}
+
+.nav-item.active {
+    color: #94a3b8;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 35px;
+}
+
+.btn {
+    display: inline-block;
+    padding: 12px 32px;
+    font-weight: bold;
+    text-decoration: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    transition: transform 0.2s, background-color 0.2s;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+}
+
+.btn-primary {
+    background-color: #eab308;
+    color: #0f172a;
+}
+
+.btn-primary:hover {
+    background-color: #ca8a04;
+}
+
+.social-links {
+    display: flex;
+    gap: 15px;
+    border-top: 1px solid #334155;
+    padding-top: 25px;
+    max-width: 400px;
+}
+
+.social-links a {
+    color: #94a3b8;
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 600;
+    transition: color 0.2s;
+}
+
+.social-links a:hover {
+    color: #eab308;
+}
+
+.link-divider {
+    color: #334155;
+    align-self: center;
+}
+
+/* ==========================================================================
+   3. PROJECTS MASTER FEED (GRID HUB)
+   ========================================================================== */
+main {
+    max-width: 1100px;
+    margin: 60px auto;
+    padding: 0 20px;
+}
+
+.back-link {
+    color: #0366d6;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.project-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.project-card {
+    background: #ffffff;
+    border: 1px solid #e1e4e8;
+    border-radius: 12px;
+    padding: 30px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.project-num {
+    font-family: monospace;
+    font-weight: bold;
+    color: #64748b;
+}
+
+.project-tag {
+    font-size: 0.75rem;
+    font-weight: bold;
+    color: #854d0e;
+    background-color: #fef9c3;
+    padding: 4px 10px;
+    border-radius: 12px;
+}
+
+.project-date {
+    font-size: 0.85rem;
+    color: #64748b;
+    margin-top: -10px;
+}
+
+.skills-container {
+    margin-top: 15px;
+    margin-bottom: 20px;
+}
+
+.skill-badge {
+    display: inline-block;
+    background-color: #f1f5f9;
+    color: #334155;
+    padding: 4px 8px;
+    font-size: 0.8rem;
+    border-radius: 4px;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    border: 1px solid #e2e8f0;
+}
+
+.btn-sm {
+    display: inline-block;
+    padding: 8px 16px;
+    border: 1px solid #cbd5e1;
+    border-radius: 4px;
+    color: #334155;
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 600;
+    transition: background 0.2s;
+}
+
+.btn-sm:hover {
+    background-color: #f8fafc;
+}
+
+/* ==========================================================================
+   4. CASE STUDY DETAIL VIEW
+   ========================================================================== */
+.case-study-container {
+    max-width: 850px;
+    margin: 40px auto;
+}
+
+.detail-header {
+    border-bottom: 1px solid #e2e8f0;
+    padding-bottom: 20px;
+    margin-bottom: 40px;
+}
+
+.story-section {
+    margin-bottom: 50px;
+}
+
+.story-section h2 {
+    font-size: 1.6rem;
+    color: #0f172a;
+    border-left: 4px solid #eab308;
+    padding-left: 12px;
+    margin-bottom: 15px;
+}
+
+.media-gallery {
+    margin: 25px 0;
+    background-color: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 20px;
+}
+
+.media-box img, .portfolio-video {
+    width: 100%;
+    height: auto;
+    border-radius: 4px;
+    display: block;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.caption {
+    display: block;
+    font-size: 0.85rem;
+    color: #64748b;
+    text-align: center;
+    margin-top: 12px;
+    font-style: italic;
+}
+
+.dual-image-row {
+    display: flex;
+    gap: 20px;
+    justify-content: space-between;
+}
+
+.media-box-half {
+    width: 48%;
+    display: flex;
+    flex-direction: column;
+}
+
+.media-box-half img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+@media (max-width: 600px) {
+    .dual-image-row {
+        flex-direction: column;
+    }
+    .media-box-half {
+        width: 100%;
+    }
+}

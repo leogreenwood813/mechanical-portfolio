@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ project.title }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <main class="case-study-container">
+        <a href="{{ url_for('projects_hub') }}" class="back-link">← Back to Projects</a>
+        
+        <header class="detail-header">
+            <span class="project-tag">{{ project.tag }}</span>
+            <h1>{{ project.title }}</h1>
+            <p class="project-date">Timeline: {{ project.date }}</p>
+        </header>
+
+        {% if not project.is_coming_soon %}
+            <div class="case-study-content">
+                
+                {% if 'spindle' in project.title.lower() or 'spindle' in project.desc.lower() %}
+                    
+                <section class="story-section">
+    <h2>01. Baseline Geometry & Stress Analysis</h2>
+    <p>{{ project.base_analysis_narrative }}</p>
+    <div class="media-gallery">
+        <div class="dual-image-row">
+            <div class="media-box-half">
+                <img src="{{ url_for('static', filename='images/spindle-base.png') }}" alt="Baseline CAD Layout">
+                <span class="caption">Figure 1a: Baseline spindle layout.</span>
+            </div>
+            <div class="media-box-half">
+                <img src="{{ url_for('static', filename='images/spindle-base-fea.png') }}" alt="Baseline FEA Analysis">
+                <span class="caption">Figure 1b: Initial stress distribution.</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="story-section">
+    <h2>02. Modular Iteration & Engineering Reflection</h2>
+    <p>{{ project.iteration_narrative }}</p>
+    <div class="media-gallery">
+        <div class="dual-image-row">
+            <div class="media-box-half">
+                <img src="{{ url_for('static', filename='images/spindle-iteration.png') }}" alt="Two-Part Variant">
+                <span class="caption">Figure 2a: Modular geometry concept.</span>
+            </div>
+            <div class="media-box-half">
+                <img src="{{ url_for('static', filename='images/spindle-iteration-fea.png') }}" alt="Two-Part FEA Data">
+                <span class="caption">Figure 2b: Joint interface stress analysis.</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="story-section">
+    <h2>03. Final Geometry & Optimisation</h2>
+    <p>{{ project.final_redesign_narrative }}</p>
+    <div class="media-gallery">
+        <div class="media-box">
+            <img src="{{ url_for('static', filename='images/spindle-final-redesign.png') }}" alt="Final Single-Piece Step Down Layout">
+            <span class="caption">Figure 3: Final integrated configuration featuring optimized transition fillets.</span>
+        </div>
+    </div>
+</section>
+                      
+                {% elif 'rocket' in project.title.lower() or 'rocket' in project.desc.lower() %}
+               
+                <section class="story-section">
+    <h2>01. Initial Conditions & CFD Convergence</h2>
+    <p>{{ project.intro }}</p>
+    <div class="media-gallery">
+        <div class="media-box">
+            <img src="{{ url_for('static', filename='images/rocket-theory.png') }}" alt="Aerodynamic Setup">
+            <span class="caption">Figure 1: Initial flow setup parameters and baseline governing drag equations.</span>
+        </div>
+    </div>
+</section>
+
+<section class="story-section">
+    <h2>02. CFD Nose Cone Analysis & Optimisation</h2>
+    <p>{{ project.cfd_narrative }}</p>
+    <div class="media-gallery">
+        <div class="media-box">
+            <img src="{{ url_for('static', filename='images/rocket-cfd.png') }}" alt="CFD Optimization Matrix">
+            <span class="caption">Figure 2: Performance metrics across nose cone configurations highlighting localized pressure gradients.</span>
+        </div>
+    </div>
+</section>
+               
+                    <section class="story-section">
+                        <h2>03. Flight Kinematics & MATLAB Modeling</h2>
+                        <p>{{ project.matlab_narrative }}</p>
+                        <div class="media-gallery">
+                            <div class="media-box">
+                                <img src="{{ url_for('static', filename='images/matlab-trajectory.png') }}" alt="MATLAB Simulation Data">
+                                <span class="caption">Figure 3: Thrust profile modeling alongside full parabolic flight trajectory plotting.</span>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="story-section">
+                        <h2>04. Component Manufacturing Breakdown</h2>
+                        <p>{{ project.manufacturing_narrative }}</p>
+                        <div class="media-gallery">
+                            <div class="media-box">
+                                <img src="{{ url_for('static', filename='images/rocket-components.png') }}" alt="Sub-Component Render Sets">
+                                <span class="caption">Figure 4: Design requirements assigned by fabrication processes (Laser, Lathe, and 3D printing).</span>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="story-section">
+                        <h2>05. Final Integration & Rig Launch Verification</h2>
+                        <p>{{ project.final_assembly_narrative }}</p>
+                        <div class="media-gallery">
+                            <div class="media-box" style="max-width: 450px; margin: 0 auto;">
+                                <img src="{{ url_for('static', filename='images/rocket-final.jpg') }}" alt="Assembled Field Rocket Setup">
+                                <span class="caption">Figure 5: Complete structural assembly oriented on the custom adjustable launch deck.</span>
+                            </div>
+                        </div>
+                    </section>
+
+                {% else %}
+                    <section class="story-section">
+                        <h2>01. Initial Concepts</h2>
+                        <p>{{ project.intro }}</p>
+                        <div class="media-gallery">
+                            <div class="media-box">
+                                <img src="{{ url_for('static', filename='images/gearbox-concepts.png') }}" alt="Initial Concepts">
+                                <span class="caption">Figure 1: Initial concepts.</span>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="story-section">
+                        <h2>02. Finite Element Analysis (FEA)</h2>
+                        <p>{{ project.fea_narrative }}</p>
+                        <div class="media-gallery">
+                            <div class="media-box">
+                                <img src="{{ url_for('static', filename='images/gearbox-fea.png') }}" alt="FEA Stress Plot">
+                                <span class="caption">Figure 3: FEA Analysis.</span>
+                            </div>
+                        </div>
+                    </section>
+                     
+                    <section class="story-section">
+                        <h2>03. Prototype CAD vs. Physical Build</h2>
+                        <p>{{ project.cad_vs_prototype_narrative }}</p>
+                        <div class="media-gallery">
+                            <div class="dual-image-row">
+                                <div class="media-box-half">
+                                    <img src="{{ url_for('static', filename='images/gearbox-prototype-cad.png') }}" alt="Prototype CAD">
+                                    <span class="caption">Figure 2a: Prototype CAD.</span>
+                                </div>
+                                <div class="media-box-half">
+                                    <img src="{{ url_for('static', filename='images/gearbox-prototype-physical.jpg') }}" alt="Physical Prototype">
+                                    <span class="caption">Figure 2b: Physical prototype.</span>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="story-section">
+                        <h2>04. Performance Verification & Testing</h2>
+                        <p>{{ project.video_narrative }}</p>
+                        <div class="media-gallery">
+                            <div class="media-box">
+                                <video controls width="100%" height="auto" preload="metadata" style="display:block; background:#000;">
+                                    <source src="{{ url_for('static', filename='images/gearbox-test.mp4') }}" type="video/mp4">
+                                    Your browser does not support the video tag.
+                                </video>
+                                <span class="caption">Video 1: Performance testing.</span>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="story-section">
+                        <h2>05. Final Manufacturing Design</h2>
+                        <p>{{ project.final_design_narrative }}</p>
+                        <div class="media-gallery">
+                            <div class="media-box">
+                                <img src="{{ url_for('static', filename='images/gearbox-final.jpg') }}" alt="Final Gearbox Design">
+                                <span class="caption">Figure 4: Final configuration.</span>
+                            </div>
+                        </div>
+                    </section>
+                {% endif %}
+
+            </div>
+        {% else %}
+            <p class="placeholder-text">Case study documentation in progress.</p>
+        {% endif %}
+    </main>
+</body>
+</html>
