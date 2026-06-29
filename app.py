@@ -11,8 +11,73 @@ profile = {
 }
 
 projects_data = {
+    "suspension": {
+        "num": "001 / 005",
+        "title": "🏎️ Design and Optimisation of a Quarter Car Suspension System",
+        "tag": "Featured Project",
+        "date": "June 2026 - Present",
+        "desc": "This project covers the design, simulation, and structural optimization of a quarter car suspension system. A 2-DOF state space model was developed in Python to simulate bump responses, extracting peak dynamic loads to inform CAD geometry and FEA loops. This project is relevant to vehicle dynamics, mechanical design, structural analysis, and system optimisation.",
+        "skills": ["Python", "MATLAB", "Fusion 360", "FEA", "Topology Optimisation"],
+        "is_coming_soon": False,
+        
+        # Unique indicator for project_detail.html conditional rendering
+        "is_suspension": True,
+        
+        # Python & MATLAB Code Links
+        "python_code_url": "https://github.com/leogreenwood813/quarter-car-suspension-project/blob/main/Quarter_Car_Suspension_Code_Python.py",
+        "matlab_code_url": "https://github.com/leogreenwood813/quarter-car-suspension-project/blob/main/Quarter_Car_Suspension_Code_MATLAB.m",
+        "report_pdf_url": "suspension-report.pdf",
+        # The distinct sequential sections with their text narratives and exact images
+        "sections": [
+            {
+                "title": "1. Project Overview",
+                "image": "suspension-flowchart.jpg",
+                "text": "This chart shows the progression of the project from start to finish, demonstrating how loads from the python simulation directly inform the CAD geometry and FEA optimisation."
+            },
+            {
+                "title": "2. Python Simulation",
+                "image": "suspension-python-plots.png",
+                "text": "Python was used to calculate the structural boundary conditions required to size and stress test the physical components of the suspension system. This was done by setting up a 2 DOF system to run flat road simulations before introducing an 80mm speed bump at 10m/s to evaluate maximum displacement, peak body acceleration, and mechanical travel limits. An iterative loop was then implemented across a range of damping ratios to extract settling times and accelerations against target criteria of less than 1 second and 0.3g respectively, allowing for the calculation of peak spring and damper forces. Because both criteria could not be met simultaneously, a compromise of three scenarios was decided: one minimising peak body acceleration, another minimising settling time, and a final one balancing the two. The spring and damper forces were then outputted at these three scenarios to directly drive the downstream CAD and FEA stages. This was then validated using a MATLAB code which outputted the exact same values."
+            },   
+            {
+                "title": "3. Component CAD Modelling",
+                "image": "suspension-cad.png",
+                "text": "Coming Soon"
+            },
+            {
+                "title": "4. Full Suspension Assembly & Motion",
+                "image": "suspension-assembly.png",
+                "text": "Coming Soon"
+            },
+            {
+                "title": "5. FEA: Scenario 1 - Minimising Peak Body Acceleration",
+                "image": "suspension-fea1.png",
+                "text": "Coming Soon"
+            },
+            {
+                "title": "6. FEA: Scenario 2 - Minimising Settling Time",
+                "image": "suspension-fea2.png",
+                "text": "Coming Soon"
+            },
+            {
+                "title": "7. FEA: Scenario 3: Balanced Setup",
+                "image": "suspension-fea3.png",
+                "text": "Coming Soon"
+            },
+            {
+                "title": "8. Topology Optimisation",
+                "image": "suspension-topology.png",
+                "text": "Coming Soon"
+            },
+            {
+                "title": "9. Conclusions",
+                "image": "conclusion.png",  
+                "text": "Coming Soon (Project Report not yet completed)"
+            }
+        ]
+    },
     "gearbox": {
-        "num": "001 / 004",
+        "num": "002 / 005",
         "title": "⚙️ EAPC Compliant Gearbox",
         "tag": "Featured Project",
         "date": "Oct 2025 - May 2026",
@@ -20,7 +85,6 @@ projects_data = {
         "skills": ["Fusion 360", "AutoCAD" , "FEA Static Stress", "Arduino (C++)", "Prototyping"],
         "is_coming_soon": False,
         
-        # Fill your text between the quotes below:
         "intro": "Following initial research, a range of potential configurations was developed, including multi-stage compound, belt-hybrid, and planetary gear sets. These concepts were evaluated using a decision matrix, with designs scored against criteria such as: maximum tooth stress, material efficiency, and manufacturing feasibility.",
         "cad_vs_prototype_narrative": "A final design was selected: a 3-stage compound gearbox achieving a 16.4:1 reduction ratio. The configuration features rotating shafts supported by bearings within the casing. Following CAD modeling (Figure 2a), DXF files were generated in AutoCAD to facilitate laser cutting. The components were then assembled into the final prototype (Figure 2b).",
         "fea_narrative": "FEA was conducted on all critical components to ensure structural integrity. Figure 3 illustrates the analysis performed on the gear teeth; loads were applied at the tooth tip to simulate a worst case scenario.. The analysis confirmed a maximum stress of 18.9 MPa, resulting in a safety factor exceeding the required 2.5 threshold. ",
@@ -28,7 +92,7 @@ projects_data = {
         "final_design_narrative": "The final design was manufactured to include protective casing around the sides and the motor. The arduino code was then optimised by altering the start up time and step up whilst still complying with EAPC regulations. Final testing outputted 95 revolutions during a 30 second interval. The design also demonstrated high material efficiency using only 2.5 out of 6 acrylic sheets, and prioritised assembly speed with a total fit-up time of 145 seconds to mount the gearbox and chain."
     },
     "rocket": {
-        "num": "002 / 004",
+        "num": "003 / 005",
         "title": "🚀 Water Bottle Rocket Delivery System",
         "tag": "Featured Project",
         "date": "Feb 2025 - May 2025",
@@ -36,7 +100,6 @@ projects_data = {
         "skills": ["ANSYS Fluent (CFD)", "MATLAB Simulation", "CNC Milling", "3D Printing"],
         "is_coming_soon": False,
         
-        # Fill your text between the quotes below:
         "intro": "ANSYS Fluent was used to analyse the flow over three distinct nose cone geometries at fixed initial conditions. Each simulation was executed to 100 iterations to ensure convergence, reliability and accuracy. For each geometry, the drag coefficient was calculated using the drag force generated by the simulation and the drag equation.",
         "cfd_narrative": "CFD analysis identified the hemispherical nose cone as the geometry with the minimum drag coefficient and highest aerodynamic efficiency. To ensure the reliability of these findings, a wind tunnel was used to validate the simulation results. The alignment between the CFD and experimental data confirmed the design's performance. Therefore, the hemispherical nose cone was selected for the final design.",
         "matlab_narrative": "A MATLAB simulation was developed to model the rocket’s flight across its thrust and free flight phases. The code implements an iterative numerical integration to account for variable mass, adiabatic air expansion and air resistance. This simulation was essential for calibrating launch pressure and water volume, ensuring all test flights landed within 2 meters of predicted targets.",
@@ -44,7 +107,7 @@ projects_data = {
         "final_assembly_narrative": "The final rocket design featured three fins for flight stability and a hemispherical nose cone for drag reduction. Initial testing identified instability in the launcher, which was addressed by reinforcing the launch slots and adopting a fixed 45-degree launch angle. The MATLAB code was used to calibrate the pressure and volume of water to reach a target horizontal distance of 70 metres. All three rockets launched successfully, reaching distances within 2 metres of the simulated distance."
     },
     "spindle": {
-        "num": "003 / 004",
+        "num": "004 / 005",
         "title": "🚘 Spindle Design and Optimisation",
         "tag": "Design & Optimisation",
         "date": "Oct 2025 - Oct 2025",
@@ -52,14 +115,12 @@ projects_data = {
         "skills": ["Fusion 360", "CAD Optimisation", "BS 8888 Standards", "Material Selection"],
         "is_coming_soon": False,
         
-        # Fill your text between the quotes below:
-        #"intro": "Design parameters.",
         "base_analysis_narrative": "Initially, the spindle was modeled with an oversized flange-to-shaft transition (Figure 1a). FEA revealed peak stresses of 680 MPa at this interface (Figure 1b). Constructed from steel, this initial geometry presented significant manufacturability issues, including increased tool wear and large lead times, making the part costly to produce.",
         "iteration_narrative": "To address the initial manufacturability and cost constraints, the spindle was remodelled using aluminum. However, due to aluminum’s lower yield strength, this iteration failed to meet the required safety factor. The design was then reconfigured into a 2 part modular assembly (Figure 2a) where the shaft threads into the flange. While this reduced peak stress to 66MPa, peer review identified potential long term reliability concerns regarding stress concentration and fatigue at the thread interface. ",
         "final_redesign_narrative": "To resolve the reliability concerns associated with the modular assembly, the design was reverted to a single-part configuration. A step down diameter was introduced (70 mm - 40 mm - 25 mm). This geometry significantly reduced stress concentrations while improving manufacturability and cost efficiency compared to the earlier iterations."
     },
     "future": {
-        "num": "004 / 004",
+        "num": "005 / 005",
         "title": "✨ Future Project Showcase",
         "tag": "Coming Summer 2026",
         "date": "July 2026 - Sept 2026",

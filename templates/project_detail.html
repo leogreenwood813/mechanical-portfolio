@@ -19,7 +19,40 @@
         {% if not project.is_coming_soon %}
             <div class="case-study-content">
                 
-                {% if 'spindle' in project.title.lower() or 'spindle' in project.desc.lower() %}
+                {# SUSPENSION PROJECT CUSTOM LAYOUT #}
+                {% if project.is_suspension %}
+                    {% for section in project.sections %}
+                        <section class="story-section">
+                            <h2>{{ section.title }}</h2>
+                            <p>{{ section.text }}</p>
+                            
+                            <div class="media-gallery">
+                                <div class="media-box">
+                                    <img src="{{ url_for('static', filename='images/' + section.image) }}" alt="{{ section.title }}">
+                                    <span class="caption">{{ section.title }} visualisation.</span>
+                                </div>
+                            </div>
+                        </section>
+
+                        {# Dynamic injection of Code Links directly beneath Section 2 #}
+                        {% if loop.index == 2 %}
+                            <div class="code-links-container" style="margin: -20px 0 40px 0; display: flex; gap: 15px;">
+                                <a href="{{ project.python_code_url }}" target="_blank" class="back-link" style="text-decoration: none; padding: 10px 15px; border: 1px solid currentColor; border-radius: 4px;">💻 View Python Code</a>
+                                <a href="{{ project.matlab_code_url }}" target="_blank" class="back-link" style="text-decoration: none; padding: 10px 15px; border: 1px solid currentColor; border-radius: 4px;">📊 View MATLAB Code</a>
+                            </div>
+                        {% endif %}
+
+                        {# Dynamic injection of Report PDF Link directly beneath Section 9 (Conclusions) #}
+                        {% if loop.index == 9 %}
+                            <div class="report-link-container" style="margin: -20px 0 40px 0;">
+                                <a href="{{ url_for('static', filename=project.report_pdf_url) }}" target="_blank" class="back-link" style="text-decoration: none; padding: 10px 15px; border: 1px solid #eab308; color: #eab308; border-radius: 4px; display: inline-block; font-weight: bold;">📋 View Full Project Report (PDF)</a>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                        
+                
+                {# SPINDLE PROJECT #}
+                {% elif 'spindle' in project.title.lower() or 'spindle' in project.desc.lower() %}
                     
                 <section class="story-section">
     <h2>01. Baseline Geometry & Stress Analysis</h2>
@@ -66,6 +99,7 @@
     </div>
 </section>
                       
+                {# ROCKET PROJECT #}
                 {% elif 'rocket' in project.title.lower() or 'rocket' in project.desc.lower() %}
                
                 <section class="story-section">
@@ -123,6 +157,7 @@
                         </div>
                     </section>
 
+                {# GEARBOX PROJECT (THE DEFAULT FALLBACK ELSE BLOCK) #}
                 {% else %}
                     <section class="story-section">
                         <h2>01. Initial Concepts</h2>
