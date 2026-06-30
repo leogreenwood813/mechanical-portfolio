@@ -6,7 +6,7 @@ profile = {
     "name": "Leo Greenwood",
     "email": "leogreenwood813@gmail.com",
     "linkedin": "https://www.linkedin.com/in/leo-greenwood-288032261",
-    "github": "https://github.com/your-username",
+    "github": "https://github.com/leogreenwood813",
     "bio" : "Mechanical Engineering student with a focus on iterative design, optimisation, and practical manufacturing. This portfolio showcases my ability to take a project from initial concept and research through to CAD modeling, FEA verification, physical prototyping and testing."
 }
 
