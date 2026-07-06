@@ -41,13 +41,13 @@ projects_data = {
             },   
             {
                 "title": "3. Component CAD Modelling",
-                "image": "suspension-cad.png",
-                "text": "Coming Soon"
+                "image": "suspension-cad.jpg",
+                "text": "Following the Python simulation, the components of the suspension system were then modelled using Fusion 360. This included components such as the upper and lower wishbones, chassis mounts, the knuckle, the spring-damper unit and the spindle. To ensure the CAD model matched the vehicle dynamics targets, the physical dimensions of the mechanical coil spring were calculated to achieve the required 11,000 N/m stiffness. Standard components such as the bolts and spherical rod ends were integrated directly from McMaster-Carr. Utilising datasheets and reference images, the custom knuckle, wishbones and the chassis mounts were modelled to ensure they fit the packaging constraints. These components were then made into an assembly."
             },
             {
                 "title": "4. Full Suspension Assembly & Motion",
-                "image": "suspension-assembly.png",
-                "text": "Coming Soon"
+                "image": "suspension-assembly.mp4",
+                "text": "The individual components were integrated into a final assembly to conduct a motion study to verify the assembly moved as intended and to check that the suspension components articulated correctly throughout the available travel. This completed assembly will then be utilised to conduct an FEA study across the 3 scenarios outlined in the Python simulation."
             },
             {
                 "title": "5. FEA: Scenario 1 - Minimising Peak Body Acceleration",
