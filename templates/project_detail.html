@@ -28,11 +28,20 @@
                             
                             <div class="media-gallery">
                                 <div class="media-box">
-                                    <img src="{{ url_for('static', filename='images/' + section.image) }}" alt="{{ section.title }}">
+                                    {# Check if the file is a video #}
+                                    {% if section.image.endswith('.mp4') %}
+                                        <video controls width="100%" height="auto" preload="metadata" style="display:block; background:#000; border-radius: 4px;">
+                                            <source src="{{ url_for('static', filename='images/' + section.image) }}" type="video/mp4">
+                                            Your browser does not support the video tag.
+                                        </video>
+                                    {# Otherwise, render it as a standard image #}
+                                    {% else %}
+                                        <img src="{{ url_for('static', filename='images/' + section.image) }}" alt="{{ section.title }}">
+                                    {% endif %}
+                                    
                                     <span class="caption">{{ section.title }} visualisation.</span>
                                 </div>
                             </div>
-                        </section>
 
                         {# Dynamic injection of Code Links directly beneath Section 2 #}
                         {% if loop.index == 2 %}
