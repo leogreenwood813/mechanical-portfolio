@@ -27,21 +27,39 @@
                             <p>{{ section.text }}</p>
                             
                             <div class="media-gallery">
-                                <div class="media-box">
-                                    {# Check if the file is a video #}
-                                    {% if section.image.endswith('.mp4') %}
+                                {# CASE 1: The section specifies multiple images (a list/iterable) #}
+                                {% if section.image is iterable and section.image is not string %}
+                                    <div class="dual-image-row">
+                                        {% for img_file in section.image %}
+                                            <div class="media-box-half">
+                                                <img src="{{ url_for('static', filename='images/' + img_file) }}" alt="{{ section.title }}">
+                                                {# Render unique dual sub-captions if provided, else use default text #}
+                                                <span class="caption">
+                                                    {% if section.captions %}{{ section.captions[loop.index0] }}{% else %}{{ section.title }} panel {{ loop.index }}.{% endif %}
+                                                </span>
+                                            </div>
+                                        {% endfor %}
+                                    </div>
+                                
+                                {# CASE 2: The section specifies a video #}
+                                {% elif section.image.endswith('.mp4') %}
+                                    <div class="media-box">
                                         <video controls width="100%" height="auto" preload="metadata" style="display:block; background:#000; border-radius: 4px;">
                                             <source src="{{ url_for('static', filename='images/' + section.image) }}" type="video/mp4">
                                             Your browser does not support the video tag.
                                         </video>
-                                    {# Otherwise, render it as a standard image #}
-                                    {% else %}
+                                        <span class="caption">{{ section.title }} visualisation.</span>
+                                    </div>
+                                
+                                {# CASE 3: Standard single image #}
+                                {% else %}
+                                    <div class="media-box">
                                         <img src="{{ url_for('static', filename='images/' + section.image) }}" alt="{{ section.title }}">
-                                    {% endif %}
-                                    
-                                    <span class="caption">{{ section.title }} visualisation.</span>
-                                </div>
+                                        <span class="caption">{{ section.title }} visualisation.</span>
+                                    </div>
+                                {% endif %}
                             </div>
+                        </section>
 
                         {# Dynamic injection of Code Links directly beneath Section 2 #}
                         {% if loop.index == 2 %}
@@ -51,87 +69,87 @@
                             </div>
                         {% endif %}
 
-                        {# Dynamic injection of Report PDF Link directly beneath Section 9 (Conclusions) #}
+                        {# Dynamic injection of Report PDF & Drawings Links directly beneath Section 9 (Conclusions) #}
                         {% if loop.index == 9 %}
-                            <div class="report-link-container" style="margin: -20px 0 40px 0;">
+                            <div class="report-links-container" style="margin: -20px 0 40px 0; display: flex; gap: 15px; flex-wrap: wrap;">
                                 <a href="{{ url_for('static', filename=project.report_pdf_url) }}" target="_blank" class="back-link" style="text-decoration: none; padding: 10px 15px; border: 1px solid #eab308; color: #eab308; border-radius: 4px; display: inline-block; font-weight: bold;">📋 View Full Project Report (PDF)</a>
+                                <a href="{{ url_for('static', filename=project.drawings_pack_url) }}" target="_blank" class="back-link" style="text-decoration: none; padding: 10px 15px; border: 1px solid #eab308; color: #eab308; border-radius: 4px; display: inline-block; font-weight: bold;">📐 View Technical Drawings Pack</a>
                             </div>
                         {% endif %}
-                    {% endfor %}
-                        
+                    {% endfor %} {# <-- ADDED THIS CRITICAL CLOSING TAG HERE #}
                 
                 {# SPINDLE PROJECT #}
                 {% elif 'spindle' in project.title.lower() or 'spindle' in project.desc.lower() %}
                     
-                <section class="story-section">
-    <h2>01. Baseline Geometry & Stress Analysis</h2>
-    <p>{{ project.base_analysis_narrative }}</p>
-    <div class="media-gallery">
-        <div class="dual-image-row">
-            <div class="media-box-half">
-                <img src="{{ url_for('static', filename='images/spindle-base.png') }}" alt="Baseline CAD Layout">
-                <span class="caption">Figure 1a: Baseline spindle layout.</span>
-            </div>
-            <div class="media-box-half">
-                <img src="{{ url_for('static', filename='images/spindle-base-fea.png') }}" alt="Baseline FEA Analysis">
-                <span class="caption">Figure 1b: Initial stress distribution.</span>
-            </div>
-        </div>
-    </div>
-</section>
+                    <section class="story-section">
+                        <h2>01. Baseline Geometry & Stress Analysis</h2>
+                        <p>{{ project.base_analysis_narrative }}</p>
+                        <div class="media-gallery">
+                            <div class="dual-image-row">
+                                <div class="media-box-half">
+                                    <img src="{{ url_for('static', filename='images/spindle-base.png') }}" alt="Baseline CAD Layout">
+                                    <span class="caption">Figure 1a: Baseline spindle layout.</span>
+                                </div>
+                                <div class="media-box-half">
+                                    <img src="{{ url_for('static', filename='images/spindle-base-fea.png') }}" alt="Baseline FEA Analysis">
+                                    <span class="caption">Figure 1b: Initial stress distribution.</span>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
 
-<section class="story-section">
-    <h2>02. Modular Iteration & Engineering Reflection</h2>
-    <p>{{ project.iteration_narrative }}</p>
-    <div class="media-gallery">
-        <div class="dual-image-row">
-            <div class="media-box-half">
-                <img src="{{ url_for('static', filename='images/spindle-iteration.png') }}" alt="Two-Part Variant">
-                <span class="caption">Figure 2a: Modular geometry concept.</span>
-            </div>
-            <div class="media-box-half">
-                <img src="{{ url_for('static', filename='images/spindle-iteration-fea.png') }}" alt="Two-Part FEA Data">
-                <span class="caption">Figure 2b: Joint interface stress analysis.</span>
-            </div>
-        </div>
-    </div>
-</section>
+                    <section class="story-section">
+                        <h2>02. Modular Iteration & Engineering Reflection</h2>
+                        <p>{{ project.iteration_narrative }}</p>
+                        <div class="media-gallery">
+                            <div class="dual-image-row">
+                                <div class="media-box-half">
+                                    <img src="{{ url_for('static', filename='images/spindle-iteration.png') }}" alt="Two-Part Variant">
+                                    <span class="caption">Figure 2a: Modular geometry concept.</span>
+                                </div>
+                                <div class="media-box-half">
+                                    <img src="{{ url_for('static', filename='images/spindle-iteration-fea.png') }}" alt="Two-Part FEA Data">
+                                    <span class="caption">Figure 2b: Joint interface stress analysis.</span>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
 
-<section class="story-section">
-    <h2>03. Final Geometry & Optimisation</h2>
-    <p>{{ project.final_redesign_narrative }}</p>
-    <div class="media-gallery">
-        <div class="media-box">
-            <img src="{{ url_for('static', filename='images/spindle-final-redesign.png') }}" alt="Final Single-Piece Step Down Layout">
-            <span class="caption">Figure 3: Final integrated configuration featuring optimized transition fillets.</span>
-        </div>
-    </div>
-</section>
-                      
+                    <section class="story-section">
+                        <h2>03. Final Geometry & Optimisation</h2>
+                        <p>{{ project.final_redesign_narrative }}</p>
+                        <div class="media-gallery">
+                            <div class="media-box">
+                                <img src="{{ url_for('static', filename='images/spindle-final-redesign.png') }}" alt="Final Single-Piece Step Down Layout">
+                                <span class="caption">Figure 3: Final integrated configuration featuring optimized transition fillets.</span>
+                            </div>
+                        </div>
+                    </section>
+                              
                 {# ROCKET PROJECT #}
                 {% elif 'rocket' in project.title.lower() or 'rocket' in project.desc.lower() %}
                
-                <section class="story-section">
-    <h2>01. Initial Conditions & CFD Convergence</h2>
-    <p>{{ project.intro }}</p>
-    <div class="media-gallery">
-        <div class="media-box">
-            <img src="{{ url_for('static', filename='images/rocket-theory.png') }}" alt="Aerodynamic Setup">
-            <span class="caption">Figure 1: Initial flow setup parameters and baseline governing drag equations.</span>
-        </div>
-    </div>
-</section>
+                    <section class="story-section">
+                        <h2>01. Initial Conditions & CFD Convergence</h2>
+                        <p>{{ project.intro }}</p>
+                        <div class="media-gallery">
+                            <div class="media-box">
+                                <img src="{{ url_for('static', filename='images/rocket-theory.png') }}" alt="Aerodynamic Setup">
+                                <span class="caption">Figure 1: Initial flow setup parameters and baseline governing drag equations.</span>
+                            </div>
+                        </div>
+                    </section>
 
-<section class="story-section">
-    <h2>02. CFD Nose Cone Analysis & Optimisation</h2>
-    <p>{{ project.cfd_narrative }}</p>
-    <div class="media-gallery">
-        <div class="media-box">
-            <img src="{{ url_for('static', filename='images/rocket-cfd.png') }}" alt="CFD Optimization Matrix">
-            <span class="caption">Figure 2: Performance metrics across nose cone configurations highlighting localized pressure gradients.</span>
-        </div>
-    </div>
-</section>
+                    <section class="story-section">
+                        <h2>02. CFD Nose Cone Analysis & Optimisation</h2>
+                        <p>{{ project.cfd_narrative }}</p>
+                        <div class="media-gallery">
+                            <div class="media-box">
+                                <img src="{{ url_for('static', filename='images/rocket-cfd.png') }}" alt="CFD Optimization Matrix">
+                                <span class="caption">Figure 2: Performance metrics across nose cone configurations highlighting localized pressure gradients.</span>
+                            </div>
+                        </div>
+                    </section>
                
                     <section class="story-section">
                         <h2>03. Flight Kinematics & MATLAB Modeling</h2>

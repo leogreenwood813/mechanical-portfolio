@@ -27,6 +27,7 @@ projects_data = {
         "python_code_url": "https://github.com/leogreenwood813/quarter-car-suspension-project/blob/main/Quarter_Car_Suspension_Code_Python.py",
         "matlab_code_url": "https://github.com/leogreenwood813/quarter-car-suspension-project/blob/main/Quarter_Car_Suspension_Code_MATLAB.m",
         "report_pdf_url": "suspension-report.pdf",
+        "drawings_pack_url": "suspension-drawings.pdf",
         # The distinct sequential sections with their text narratives and exact images
         "sections": [
             {
@@ -50,24 +51,28 @@ projects_data = {
                 "text": "The individual components were integrated into a final assembly to conduct a motion study to verify the assembly moved as intended and to check that the suspension components articulated correctly throughout the available travel. This completed assembly will then be utilised to conduct an FEA study across the 3 scenarios outlined in the Python simulation."
             },
             {
-                "title": "5. FEA: Scenario 1 - Minimising Peak Body Acceleration",
-                "image": "suspension-fea1.png",
-                "text": "Coming Soon"
+                "title": "5. FEA: Structural Analysis",
+                # Pass a list of two images instead of one string
+                "image": ["fea.png", "fea-zoomed.png"],
+                "captions": ["Figure 5a: Equivalent Stress Contours (Baseline).", "Figure 5b: Critical Stress Concentration (Close-up)."],
+                "text": "The wishbone geometry was imported into ANSYS Mechanical for static structural analysis. The peak shock force was applied to the upper mounting hole, with fixed supports bounding the spherical rod ends to simulate chassis mounting constraints. Initial simulation passes revealed severe stress concentrations localised on the rod end shafts. To ensure accuracy and properly capture these steep stress gradients, the mesh was refined to an element size of 2mm in this critical region. Because the baseline stresses drastically exceeded material yield limits, an iterative structural redesign was required."
             },
             {
-                "title": "6. FEA: Scenario 2 - Minimising Settling Time",
-                "image": "suspension-fea2.png",
-                "text": "Coming Soon"
+                "title": "6. Iterative Redesign & Load Cases",
+                # Pass a list of two images instead of one string
+                "image": ["wishbone-redesign.png", "force-tables.png"],
+                "captions": ["Figure 6a: Iterative Structural Redesign.", "Figure 6b: Resolved Boundary Force Envelopes."],
+                "text": "To mitigate the critical stress concentrations, the assembly was redesigned with larger M14 spherical rod ends and thickened wishbone legs. The updated geometry was simulated across the three dynamic load cases mapped in Figure 6b. This structural intervention successfully reduced peak stresses and maximum displacements by approximately 2.7x across all scenarios, comfortably bringing the assembly within safe material yield limits and establishing a robust baseline for topology optimisation."
             },
             {
-                "title": "7. FEA: Scenario 3: Balanced Setup",
-                "image": "suspension-fea3.png",
-                "text": "Coming Soon"
+                "title": "7. Topology Optimisation",
+                "image": "topology-optimisation.png",
+                "text": "Topology optimisation was performed on the wishbone clevis using ANSYS Mechanical, configuring the solver to maximise global stiffness while reducing structural volume. Preservation constraints were applied to the mounting holes as material exclusion zones to maintain critical functional interfaces. Once the algorithm generated the primary load paths, the organic mesh was smoothed and imported into Fusion 360 to reconstruct clean, manufacturable CAD geometry."
             },
             {
-                "title": "8. Topology Optimisation",
-                "image": "suspension-topology.png",
-                "text": "Coming Soon"
+                "title": "8. Mass Savings & Validation",
+                "image": "mass-savings.png",
+                "text": "The optimisation workflow yielded significant mass reductions across the entire suspension subsystem. Most notably, the upper wishbone clevis achieved the highest efficiency with a 41.19% material reduction. Conversely, because the upper wishbone legs had been widened during the initial redesign phase to handle peak stress concentrations, its subsequent optimisation yielded a more modest 4.87% mass saving. Despite these structural trade offs, the final assembly successfully shed weight while fully maintaining global assembly stiffness. "
             },
             {
                 "title": "9. Conclusions",
