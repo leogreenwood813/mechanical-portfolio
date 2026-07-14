@@ -76,7 +76,7 @@ projects_data = {
             },
             {
                 "title": "9. Conclusions",
-                "image": "conclusion.png",  
+                "image": "conclusion.PNG",  
                 "text": "This project completed a full engineering design cycle for a lightweight double wishbone suspension corner. A 2-DOF Python simulation was used to evaluate three distinct operational scenarios. While Scenario 1 (minimising acceleration) compromised the car's track handling and Scenario 2 (minimising settling time) subjected the components to excessive structural stress, Scenario 3 was selected as the optimal, balanced compromise using a damping ratio of 0.636. The assembly was modelled in Fusion 360 to satisfy tight packaging constraints before undergoing structural analysis in ANSYS Mechanical. Following an iterative redesign to resolve critical joint bending moments, a final topology optimisation routine successfully stripped mass from low stress regions to achieve substantial weight savings while fully maintaining global assembly stiffness."
             }
         ]
