@@ -8,7 +8,13 @@
 </head>
 <body>
     <main class="case-study-container">
-        <a href="{{ url_for('projects_hub') }}" class="back-link">← Back to Projects</a>
+        
+        {# BACK NAVIGATION #}
+        {% if project.is_model_car_detail %}
+            <a href="{{ project.back_to_hub_url }}" class="back-link">← Back to 1:8 Scale Car Hub</a>
+        {% else %}
+            <a href="{{ url_for('projects_hub') }}" class="back-link">← Back to Projects</a>
+        {% endif %}
         
         <header class="detail-header">
             <span class="project-tag">{{ project.tag }}</span>
@@ -16,32 +22,48 @@
             <p class="project-date">Timeline: {{ project.date }}</p>
         </header>
 
-        {% if not project.is_coming_soon %}
+        {# 1:8 SCALE CAR HUB (SHOWS 8 VERTICAL BUTTONS) #}
+        {% if project.is_model_car_hub %}
+            <div class="case-study-content">
+                <section class="story-section">
+                    <p>{{ project.desc }}</p>
+                    <p>Select a section below to view the detailed development breakdown:</p>
+                    
+                    <div style="display: flex; flex-direction: column; gap: 12px; margin-top: 25px; max-width: 400px;">
+                        {% for sec in project.sub_sections %}
+                            <a href="/project/future/{{ sec.id }}" class="back-link" style="text-decoration: none; padding: 14px 20px; border: 1px solid currentColor; border-radius: 6px; text-align: center; font-weight: bold; display: block;">
+                                {{ sec.label }}
+                            </a>
+                        {% endfor %}
+                    </div>
+                </section>
+            </div>
+
+        {% elif not project.is_coming_soon %}
             <div class="case-study-content">
                 
-                {# SUSPENSION PROJECT CUSTOM LAYOUT #}
-                {% if project.is_suspension %}
+                {# SECTION-BASED PROJECTS (MODEL CAR DETAILS, SUSPENSION, WING MIRROR) #}
+                {% if project.is_model_car_detail or project.is_suspension or project.is_wing_mirror %}
                     {% for section in project.sections %}
                         <section class="story-section">
                             <h2>{{ section.title }}</h2>
                             <p>{{ section.text }}</p>
                             
                             <div class="media-gallery">
-                                {# CASE 1: The section specifies multiple images (a list/iterable) #}
+                                {# CASE 1: Multiple images #}
                                 {% if section.image is iterable and section.image is not string %}
                                     <div class="dual-image-row">
                                         {% for img_file in section.image %}
                                             <div class="media-box-half">
                                                 <img src="{{ url_for('static', filename='images/' + img_file) }}" alt="{{ section.title }}">
-                                                {# Render unique dual sub-captions if provided, else use default text #}
                                                 <span class="caption">
-                                                    {% if section.captions %}{{ section.captions[loop.index0] }}{% else %}{{ section.title }} panel {{ loop.index }}.{% endif %}
+                                                    {% if section.captions %}{{ section.captions[loop.index0] }}{% else %}{{ section.title }} figure {{ loop.index }}.{% endif %}
                                                 </span>
                                             </div>
                                         {% endfor %}
                                     </div>
                                 
-                                {# CASE 2: The section specifies a video #}
+                                {# CASE 2: Video file #}
                                 {% elif section.image.endswith('.mp4') %}
                                     <div class="media-box">
                                         <video controls width="100%" height="auto" preload="metadata" style="display:block; background:#000; border-radius: 4px;">
@@ -51,7 +73,7 @@
                                         <span class="caption">{{ section.title }} visualisation.</span>
                                     </div>
                                 
-                                {# CASE 3: Standard single image #}
+                                {# CASE 3: Single image #}
                                 {% else %}
                                     <div class="media-box">
                                         <img src="{{ url_for('static', filename='images/' + section.image) }}" alt="{{ section.title }}">
@@ -61,26 +83,25 @@
                             </div>
                         </section>
 
-                        {# Dynamic injection of Code Links directly beneath Section 2 #}
-                        {% if loop.index == 2 %}
+                        {# SUSPENSION CODE LINKS #}
+                        {% if project.is_suspension and loop.index == 2 %}
                             <div class="code-links-container" style="margin: -20px 0 40px 0; display: flex; gap: 15px;">
                                 <a href="{{ project.python_code_url }}" target="_blank" class="back-link" style="text-decoration: none; padding: 10px 15px; border: 1px solid currentColor; border-radius: 4px;">💻 View Python Code</a>
                                 <a href="{{ project.matlab_code_url }}" target="_blank" class="back-link" style="text-decoration: none; padding: 10px 15px; border: 1px solid currentColor; border-radius: 4px;">📊 View MATLAB Code</a>
                             </div>
                         {% endif %}
 
-                        {# Dynamic injection of Report PDF & Drawings Links directly beneath Section 9 (Conclusions) #}
-                        {% if loop.index == 9 %}
+                        {# SUSPENSION REPORT LINKS #}
+                        {% if project.is_suspension and loop.index == 9 %}
                             <div class="report-links-container" style="margin: -20px 0 40px 0; display: flex; gap: 15px; flex-wrap: wrap;">
                                 <a href="{{ url_for('static', filename=project.report_pdf_url) }}" target="_blank" class="back-link" style="text-decoration: none; padding: 10px 15px; border: 1px solid #eab308; color: #eab308; border-radius: 4px; display: inline-block; font-weight: bold;">📋 View Full Project Report (PDF)</a>
                                 <a href="{{ url_for('static', filename=project.drawings_pack_url) }}" target="_blank" class="back-link" style="text-decoration: none; padding: 10px 15px; border: 1px solid #eab308; color: #eab308; border-radius: 4px; display: inline-block; font-weight: bold;">📐 View Technical Drawings Pack</a>
                             </div>
                         {% endif %}
-                    {% endfor %} {# <-- ADDED THIS CRITICAL CLOSING TAG HERE #}
-                
+                    {% endfor %}
+
                 {# SPINDLE PROJECT #}
                 {% elif 'spindle' in project.title.lower() or 'spindle' in project.desc.lower() %}
-                    
                     <section class="story-section">
                         <h2>01. Baseline Geometry & Stress Analysis</h2>
                         <p>{{ project.base_analysis_narrative }}</p>
@@ -125,10 +146,9 @@
                             </div>
                         </div>
                     </section>
-                              
+
                 {# ROCKET PROJECT #}
                 {% elif 'rocket' in project.title.lower() or 'rocket' in project.desc.lower() %}
-               
                     <section class="story-section">
                         <h2>01. Initial Conditions & CFD Convergence</h2>
                         <p>{{ project.intro }}</p>
@@ -150,7 +170,7 @@
                             </div>
                         </div>
                     </section>
-               
+
                     <section class="story-section">
                         <h2>03. Flight Kinematics & MATLAB Modeling</h2>
                         <p>{{ project.matlab_narrative }}</p>
@@ -184,8 +204,8 @@
                         </div>
                     </section>
 
-                {# GEARBOX PROJECT (THE DEFAULT FALLBACK ELSE BLOCK) #}
-                {% else %}
+                {# GEARBOX PROJECT (ONLY FALLS BACK HERE FOR GEARBOX) #}
+                {% elif 'gearbox' in project.title.lower() or 'gearbox' in project.desc.lower() %}
                     <section class="story-section">
                         <h2>01. Initial Concepts</h2>
                         <p>{{ project.intro }}</p>
@@ -207,7 +227,7 @@
                             </div>
                         </div>
                     </section>
-                     
+
                     <section class="story-section">
                         <h2>03. Prototype CAD vs. Physical Build</h2>
                         <p>{{ project.cad_vs_prototype_narrative }}</p>
