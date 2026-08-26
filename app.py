@@ -270,7 +270,7 @@ projects_data = {
         "num": "001 / 006",
         "title": "🏎️ Upcoming: 1:8 Scale Model Car",
         "tag": "In Development",
-        "date": "July 2026 - Sept 2026",
+        "date": "August 2026 - Current",
         "desc": "Coming soon.",
         "skills": ["Fusion 360", "Vehicle Dynamics", "FEA Analysis", "3D Printing", "Optimisation"],
         "is_coming_soon": False,
