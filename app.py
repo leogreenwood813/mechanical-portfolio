@@ -291,7 +291,7 @@ projects_data = {
     "gearbox": {
         "num": "002 / 006",
         "title": "⚙️ EAPC Compliant Gearbox",
-        "tag": "Featured Project",
+        "tag": "Academic Project",
         "date": "Oct 2025 - May 2026",
         "desc": "Designed, manufactured and tested an EAPC compliant gearbox. Researched gear mechanisms, used FEA to validate design choices, developed a functional design and optimised an arduino control system. Relevant to design engineering roles because it demonstrates mechanical research, structural validation, and systems integration.",
         "skills": ["Fusion 360", "AutoCAD", "FEA Static Stress", "Arduino (C++)", "Prototyping"],
@@ -306,7 +306,7 @@ projects_data = {
     "suspension": {
         "num": "003 / 006",
         "title": "🏎️ Design and Optimisation of a Quarter Car Suspension System",
-        "tag": "Featured Project",
+        "tag": "Personal Project",
         "date": "June 2026 - July 2026",
         "desc": "This project covers the design, simulation, and structural optimization of a quarter car suspension system. A 2-DOF state space model was developed in Python to simulate bump responses, extracting peak dynamic loads to inform CAD geometry and FEA loops. This project is relevant to vehicle dynamics, mechanical design, structural analysis, and system optimisation.",
         "skills": ["Python", "MATLAB", "Fusion 360", "FEA", "Topology Optimisation"],
@@ -370,7 +370,7 @@ projects_data = {
     "wing_mirror": {
         "num": "004 / 006",
         "title": "🚘 Aerodynamic Evolution of an Automotive Wing Mirror",
-        "tag": "Featured Project",
+        "tag": "Personal Project",
         "date": "July 2026 - Aug 2026",
         "desc": "A comparative aerodynamic study evaluating 40 years of wing mirror design evolution between a 1980s baseline and a modern 2016 Corsa. Reverse engineered physical geometry using image calibration and 3D CAD modeling, validated assembly tolerances via 3D printing prototyping, and executed ANSYS Fluent CFD simulations to analyse flow fields and drag reduction across multiple highway speeds. Relevant to aerodynamic development, CAD modeling, and CFD validation. ",
         "skills": ["ANSYS Fluent (CFD)", "Fusion 360", "3D Printing", "Aerodynamics"],
@@ -411,7 +411,7 @@ projects_data = {
     "rocket": {
         "num": "005 / 006",
         "title": "🚀 Water Bottle Rocket Delivery System",
-        "tag": "Featured Project",
+        "tag": "Academic Project",
         "date": "Feb 2025 - May 2025",
         "desc": "Designed, manufactured and tested a water bottle rocket delivery system, designed to carry medical supplies for flood relief operations. Utilised CFD to optimise nose cone geometry, validated findings through physical wind tunnel testing, and developed a MATLAB simulation to predict flight trajectories. Relevant to design engineering roles by demonstrating advanced aerodynamic analysis, simulation driven optimisation, and complex systems modeling.",
         "skills": ["ANSYS Fluent (CFD)", "MATLAB Simulation", "CNC Milling", "3D Printing"],
@@ -426,7 +426,7 @@ projects_data = {
     "spindle": {
         "num": "006 / 006",
         "title": "🚘 Spindle Design and Optimisation",
-        "tag": "Featured Project",
+        "tag": "Personal Project",
         "date": "Oct 2025 - Oct 2025",
         "desc": "Designed a spindle based on technical drawings of a steering knuckle and wheel hub. Utilised FEA to evaluate performance under dynamic bump, braking, and cornering loads, optimising for stress concentrations and material selection. Relevant to design engineering roles by demonstrating proficiency in mechanical design optimisation and structural simulation.",
         "skills": ["Fusion 360", "CAD Optimisation", "BS 8888 Standards", "Material Selection"],
