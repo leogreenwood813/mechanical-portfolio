@@ -268,9 +268,9 @@ scale_car_sections = {
 projects_data = {
     "future": {
         "num": "001 / 006",
-        "title": "🏎️ Upcoming: 1:8 Scale Model Car",
+        "title": "🏎️ Coming Soon",
         "tag": "In Development",
-        "date": "August 2026 - Current",
+        "date": "September 2026 - Current",
         "desc": "Coming soon.",
         "skills": ["Fusion 360", "Vehicle Dynamics", "FEA Analysis", "3D Printing", "Optimisation"],
         "is_coming_soon": False,
